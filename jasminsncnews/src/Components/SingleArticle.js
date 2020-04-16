@@ -35,7 +35,7 @@ class SingleArticle extends Component {
         //console.log(this.state, 'this')
         const {article, isLoading} = this.state;
         if(isLoading) return <Loading />
-        console.log(article, '<<<<')
+
         return (
             <main>
                <h1>{article.title}</h1>

@@ -3,7 +3,7 @@ import {Link} from '@reach/router';
 
 const Articles = (props) => {
  
-    const {title, author, article_id} = props;
+    const {title, author, article_id, votes} = props;
  
     
     return (
@@ -12,7 +12,7 @@ const Articles = (props) => {
                
                 {title}
                 </Link></h1>
-            <p>by {author}</p>
+    <p>by {author} votes: {votes}</p>
             
             
         </div>
