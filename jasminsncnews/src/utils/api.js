@@ -36,11 +36,36 @@ export const postComment = (article_id, comment) => {
 	return request
 		.post(`/articles/${article_id}/comments`, comment)
 		.then(({ data }) => {
-			console.log(data, "responseeeeeee");
 			return data.comment;
 		});
 };
 
 export const deleteComment = (comment_id) => {
 	return request.delete(`/comments/${comment_id}`);
+};
+
+export const patchArticleVotes = (article_id, vote) => {
+	const newVote = { inc_votes: vote };
+
+	return request.patch(`/articles/${article_id}`, newVote).then(({ data }) => {
+		return data.article;
+	});
+};
+
+export const patchCommentVotes = (comment_id, vote) => {
+	const newVote = { inc_votes: vote };
+
+	return request.patch(`/comments/${comment_id}`, newVote).then(({ data }) => {
+		return data.comment;
+	});
+};
+
+export const getArticlesBy = (sort_by, order) => {
+	console.log(sort_by, order);
+	return request
+		.get(`/articles/?sort_by=${sort_by}&&order=${order}`)
+		.then(({ data }) => {
+			//console.log(data.articles);
+			return data.articles;
+		});
 };

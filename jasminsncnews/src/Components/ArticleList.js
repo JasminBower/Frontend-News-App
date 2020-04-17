@@ -21,9 +21,14 @@ class ArticleList extends Component {
 	}
 
 	fetchArticles = () => {
-		console.log(this.props);
 		api.getArticles(this.props.topic).then((articles) => {
 			this.setState({ articles, isLoading: false });
+		});
+	};
+
+	sortArticlesBy = (sort_by, order) => {
+		api.getArticlesBy(sort_by, order).then((res) => {
+			console.log(res);
 		});
 	};
 
@@ -33,7 +38,7 @@ class ArticleList extends Component {
 
 		return (
 			<main>
-				Sort articles by: <SortArticles />
+				Sort articles by: <SortArticles sortArticlesBy={this.sortArticlesBy} />
 				{articles.map((article) => {
 					return <Articles key={article.article_id} {...article} />;
 				})}

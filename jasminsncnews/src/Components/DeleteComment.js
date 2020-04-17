@@ -12,8 +12,12 @@ class DeleteComment extends Component {
 		);
 	}
 
-	deleteSingleComment = () => {
-		api.deleteComment(this.props.comment_id);
+	deleteSingleComment = (event) => {
+		const { comment_id, removeComment } = this.props;
+		event.preventDefault();
+		removeComment(comment_id);
+
+		api.deleteComment(comment_id);
 	};
 }
 

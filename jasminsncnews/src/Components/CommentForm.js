@@ -10,7 +10,7 @@ class CommentForm extends Component {
 		const { body } = this.state;
 
 		return (
-			<form onClick={this.handleSubmit}>
+			<form onSubmit={this.handleSubmit}>
 				<label>
 					Comment:
 					<input
