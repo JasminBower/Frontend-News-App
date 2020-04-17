@@ -8,13 +8,9 @@ export const getTopics = () => {
 	});
 };
 
-export const getArticles = (topic, created_at, comment_count, votes) => {
+export const getArticles = (topic, sort_by, order) => {
 	return request
-		.get(
-			"/articles",
-			{ params: { topic } },
-			{ query: { created_at, comment_count, votes } },
-		)
+		.get("/articles", { params: { topic, sort_by, order } })
 		.then(({ data }) => {
 			return data.articles;
 		});
@@ -37,6 +33,9 @@ export const postComment = (article_id, comment) => {
 		.post(`/articles/${article_id}/comments`, comment)
 		.then(({ data }) => {
 			return data.comment;
+		})
+		.catch((err) => {
+			console.dir(err);
 		});
 };
 
@@ -58,14 +57,4 @@ export const patchCommentVotes = (comment_id, vote) => {
 	return request.patch(`/comments/${comment_id}`, newVote).then(({ data }) => {
 		return data.comment;
 	});
-};
-
-export const getArticlesBy = (sort_by, order) => {
-	console.log(sort_by, order);
-	return request
-		.get(`/articles/?sort_by=${sort_by}&&order=${order}`)
-		.then(({ data }) => {
-			//console.log(data.articles);
-			return data.articles;
-		});
 };

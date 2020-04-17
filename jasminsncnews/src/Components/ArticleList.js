@@ -27,8 +27,8 @@ class ArticleList extends Component {
 	};
 
 	sortArticlesBy = (sort_by, order) => {
-		api.getArticlesBy(sort_by, order).then((res) => {
-			console.log(res);
+		api.getArticles(this.props.topic, sort_by, order).then((articles) => {
+			this.setState({ articles });
 		});
 	};
 
