@@ -4,10 +4,12 @@ import * as api from "../utils/api";
 import CommentForm from "./CommentForm";
 import DeleteComment from "./DeleteComment";
 import CommentVotes from "./CommentVotes";
+import DisplayError from "./DisplayError";
 
 class CommentList extends Component {
 	state = {
 		comments: [],
+		hasError: null,
 	};
 
 	componentDidMount() {
@@ -21,9 +23,20 @@ class CommentList extends Component {
 	}
 
 	fetchComments = () => {
-		api.getComments(this.props.article_id).then((comments) => {
-			this.setState({ comments });
-		});
+		api
+			.getComments(this.props.article_id)
+			.then((comments) => {
+				this.setState({ comments });
+			})
+			.catch((err) => {
+				const { status, data } = err.response;
+				this.setState({
+					hasError: {
+						status: status,
+						msg: data.msg,
+					},
+				});
+			});
 	};
 
 	addComment = (newComment) => {
@@ -42,20 +55,33 @@ class CommentList extends Component {
 	};
 
 	patchVotes = (comment_id, vote) => {
-		api.patchCommentVotes(comment_id, vote).then((comment) => {
-			const updatedComments = this.state.comments.map((item) => {
-				if (item.comment_id !== comment_id) {
-					return item;
-				}
-				return comment;
-			});
+		api
+			.patchCommentVotes(comment_id, vote)
+			.then((comment) => {
+				const updatedComments = this.state.comments.map((item) => {
+					if (item.comment_id !== comment_id) {
+						return item;
+					}
+					return comment;
+				});
 
-			this.setState({ comments: updatedComments });
-		});
+				this.setState({ comments: updatedComments });
+			})
+			.catch((err) => {
+				const { status, data } = err.response;
+				this.setState({
+					hasError: {
+						status: status,
+						msg: data.msg,
+					},
+				});
+			});
 	};
 
 	render() {
-		const { comments } = this.state;
+		const { comments, hasError } = this.state;
+		if (hasError)
+			return <DisplayError status={hasError.status} msg={hasError.msg} />;
 
 		return (
 			<div>

@@ -7,6 +7,7 @@ import { Router } from "@reach/router";
 import ArticleList from "./Components/ArticleList";
 import SingleArticle from "./Components/SingleArticle";
 import CommentList from "./Components/CommentList";
+import DisplayError from "./Components/DisplayError";
 //import CommentForm from './Components/CommentForm';
 
 class App extends React.Component {
@@ -23,12 +24,14 @@ class App extends React.Component {
 
 				<Router>
 					<ArticleList path='/' />
+
 					<ArticleList path='/topics/:topic' />
 					<SingleArticle path='/articles/:article_id' />
 					<CommentList
 						path='/articles/:article_id/comments'
 						loggedInUser={this.state.loggedInUser}
 					/>
+					<DisplayError default status={404} msg={"Path not found"} />
 					{/* <CommentForm path='/articles/:article_id/comments' loggedInUser={this.state.loggedInUser}/>  */}
 				</Router>
 			</div>

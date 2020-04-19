@@ -3,11 +3,13 @@ import * as api from "../utils/api";
 import Loading from "./Loading";
 import { Link } from "@reach/router";
 import ArticleVotes from "./ArticleVotes";
+import DisplayError from "./DisplayError";
 
 class SingleArticle extends Component {
 	state = {
 		article: [],
 		isLoading: true,
+		articleError: null,
 	};
 
 	componentDidMount() {
@@ -21,20 +23,46 @@ class SingleArticle extends Component {
 	}
 
 	fetchArticle = () => {
-		api.getSingleArticle(this.props.article_id).then((article) => {
-			this.setState({ article, isLoading: false });
-		});
+		api
+			.getSingleArticle(this.props.article_id)
+			.then((article) => {
+				this.setState({ article, isLoading: false });
+			})
+			.catch((err) => {
+				const { status, data } = err.response;
+				this.setState({
+					articleError: {
+						status: status,
+						msg: data.msg,
+					},
+				});
+			});
 	};
 
 	patchVotes = (article_id, vote) => {
-		api.patchArticleVotes(article_id, vote).then((article) => {
-			this.setState({ article });
-		});
+		api
+			.patchArticleVotes(article_id, vote)
+			.then((article) => {
+				this.setState({ article });
+			})
+			.catch((err) => {
+				const { status, data } = err.response;
+				this.setState({
+					articleError: {
+						status: status,
+						msg: data.msg,
+					},
+				});
+			});
 	};
 
 	render() {
 		//console.log(this.state, 'this')
-		const { article, isLoading } = this.state;
+		const { article, isLoading, articleError } = this.state;
+		if (articleError)
+			return (
+				<DisplayError status={articleError.status} msg={articleError.msg} />
+			);
 		if (isLoading) return <Loading />;
 
 		return (
