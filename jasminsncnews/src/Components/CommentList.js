@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import CommentForm from "./CommentForm";
 import DeleteComment from "./DeleteComment";
-import CommentVotes from "./CommentVotes";
+import Votes from "./Votes";
 import DisplayError from "./DisplayError";
 
 class CommentList extends Component {
@@ -104,10 +104,7 @@ class CommentList extends Component {
 								)}
 								<p>votes: {comment.votes}</p>
 								{comment.author !== this.props.loggedInUser && (
-									<CommentVotes
-										comment_id={comment.comment_id}
-										patchVotes={this.patchVotes}
-									/>
+									<Votes id={comment.comment_id} patchVotes={this.patchVotes} />
 								)}
 							</li>
 						);

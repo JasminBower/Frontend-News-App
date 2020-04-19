@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ArticleVotes extends Component {
+class Votes extends Component {
 	render() {
 		return (
 			<div>
@@ -15,14 +15,14 @@ class ArticleVotes extends Component {
 	}
 
 	handleUpVoteCount = () => {
-		const { article_id, patchVotes } = this.props;
-		patchVotes(article_id, 1);
+		const { id, patchVotes } = this.props;
+		patchVotes(id, 1);
 	};
 
 	handleDownVoteCount = () => {
-		const { article_id, patchVotes } = this.props;
-		patchVotes(article_id, -1);
+		const { id, patchVotes } = this.props;
+		patchVotes(id, -1);
 	};
 }
 
-export default ArticleVotes;
+export default Votes;

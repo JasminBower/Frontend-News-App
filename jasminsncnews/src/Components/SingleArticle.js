@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as api from "../utils/api";
 import Loading from "./Loading";
 import { Link } from "@reach/router";
-import ArticleVotes from "./ArticleVotes";
+import Votes from "./Votes";
 import DisplayError from "./DisplayError";
 
 class SingleArticle extends Component {
@@ -69,10 +69,7 @@ class SingleArticle extends Component {
 			<main>
 				<h1>{article.title}</h1>
 				<p>votes: {article.votes}</p>
-				<ArticleVotes
-					article_id={article.article_id}
-					patchVotes={this.patchVotes}
-				/>
+				<Votes id={article.article_id} patchVotes={this.patchVotes} />
 				<p>{article.body}</p>
 				<p>
 					<Link to={`/articles/${article.article_id}/comments`}>
