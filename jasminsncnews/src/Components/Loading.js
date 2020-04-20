@@ -13,9 +13,9 @@ const rotate = keyframes`
 
 const Rotate = styled.div`
 	display: inline-block;
-	animation: ${rotate} 2s linear infinite;
+	animation: ${rotate} 3s linear infinite;
 	padding: 2rem 2rem;
-	font-size: 16.2rem;
+	font-size: 17rem;
 `;
 
 const Loading = (props) => {

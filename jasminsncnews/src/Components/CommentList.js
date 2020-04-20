@@ -5,6 +5,11 @@ import CommentForm from "./CommentForm";
 import DeleteComment from "./DeleteComment";
 import Votes from "./Votes";
 import DisplayError from "./DisplayError";
+import styled from "styled-components";
+
+const CommentItem = styled.li`
+	list-style-type: none;
+`;
 
 class CommentList extends Component {
 	state = {
@@ -91,7 +96,7 @@ class CommentList extends Component {
 				<ul>
 					{comments.map((comment) => {
 						return (
-							<li key={comment.comment_id}>
+							<CommentItem key={comment.comment_id}>
 								<h1>{comment.body}</h1>
 								<p>by: {comment.author}</p>
 								{comment.author === this.props.loggedInUser && (
@@ -104,7 +109,7 @@ class CommentList extends Component {
 								{comment.author !== this.props.loggedInUser && (
 									<Votes id={comment.comment_id} patchVotes={this.patchVotes} />
 								)}
-							</li>
+							</CommentItem>
 						);
 					})}
 				</ul>

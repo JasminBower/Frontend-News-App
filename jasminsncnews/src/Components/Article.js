@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "@reach/router";
 import styled from "styled-components";
 
-const ArticleLink = styled.a`
+const ArticleLink = styled.h1`
 	list-style-type: none;
 	text-decoration: none;
 `;
@@ -12,11 +12,10 @@ const Articles = (props) => {
 
 	return (
 		<div>
-			<h1>
-				<Link to={`/articles/${article_id}`}>
-					<ArticleLink>{title}</ArticleLink>
-				</Link>
-			</h1>
+			<ArticleLink>
+				<Link to={`/articles/${article_id}`}>{title}</Link>
+			</ArticleLink>
+
 			<p>
 				by {author} votes: {votes}
 			</p>

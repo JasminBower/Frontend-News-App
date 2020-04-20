@@ -52,17 +52,13 @@ class Navbar extends Component {
 			<nav className='Nav'>
 				<ListStyle>
 					<ul>
-						<TopicLink>
-							<li key={"home"}>
-								<Link to={"/"}>home</Link>
-							</li>
+						<TopicLink key={"home"}>
+							<Link to={"/"}>home</Link>
 						</TopicLink>
 						{topics.map((topic) => {
 							return (
-								<TopicLink>
-									<li key={topic.slug}>
-										<Link to={`topics/${topic.slug}`}>{topic.slug}</Link>
-									</li>
+								<TopicLink key={topic.slug}>
+									<Link to={`topics/${topic.slug}`}>{topic.slug}</Link>
 								</TopicLink>
 							);
 						})}
