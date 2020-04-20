@@ -53,7 +53,7 @@ class Navbar extends Component {
 				<ListStyle>
 					<ul>
 						<TopicLink>
-							<li>
+							<li key={"home"}>
 								<Link to={"/"}>home</Link>
 							</li>
 						</TopicLink>
