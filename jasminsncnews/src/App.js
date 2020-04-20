@@ -8,7 +8,7 @@ import ArticleList from "./Components/ArticleList";
 import SingleArticle from "./Components/SingleArticle";
 import CommentList from "./Components/CommentList";
 import DisplayError from "./Components/DisplayError";
-//import CommentForm from './Components/CommentForm';
+import styled from "styled-components";
 
 class App extends React.Component {
 	state = {
@@ -19,8 +19,8 @@ class App extends React.Component {
 		return (
 			<div className='App'>
 				<Header loggedInUser={this.state.loggedInUser} />
-				<Footer className='Footer' />
-				<Navbar />
+
+				<Navbar className='Navbar' />
 
 				<Router>
 					<ArticleList path='/' />
@@ -34,6 +34,7 @@ class App extends React.Component {
 					<DisplayError default status={404} msg={"Path not found"} />
 					{/* <CommentForm path='/articles/:article_id/comments' loggedInUser={this.state.loggedInUser}/>  */}
 				</Router>
+				<Footer className='Footer' />
 			</div>
 		);
 	}

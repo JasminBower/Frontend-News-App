@@ -1,8 +1,11 @@
-
-
-
-.App{
-    text-align: center;
-    background-color: pink; 
+.App {
+	text-align: center;
+	background-color: pink;
 }
 
+.Navbar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	background-color: plum;
+}

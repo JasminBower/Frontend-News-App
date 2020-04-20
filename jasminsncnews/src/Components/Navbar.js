@@ -3,6 +3,21 @@ import * as api from "../utils/api";
 import Loading from "../Components/Loading";
 import { Link } from "@reach/router";
 import DisplayError from "./DisplayError";
+import styled from "styled-components";
+
+const TopicLink = styled.li`
+	display: inline-block;
+	border-radius: 3px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
+	width: 11rem;
+	background: transparent;
+	color: white;
+	border: 2px solid white;
+	list-style-type: none;
+	text-decoration: none;
+`;
+const ListStyle = styled.ul``;
 
 class Navbar extends Component {
 	state = {
@@ -35,18 +50,24 @@ class Navbar extends Component {
 		if (isLoading) return <Loading />;
 		return (
 			<nav className='Nav'>
-				<ul>
-					<li>
-						<Link to={"/"}>Home</Link>
-					</li>
-					{topics.map((topic) => {
-						return (
-							<li key={topic.slug}>
-								<Link to={`topics/${topic.slug}`}>{topic.slug}</Link>
+				<ListStyle>
+					<ul>
+						<TopicLink>
+							<li>
+								<Link to={"/"}>home</Link>
 							</li>
-						);
-					})}
-				</ul>
+						</TopicLink>
+						{topics.map((topic) => {
+							return (
+								<TopicLink>
+									<li key={topic.slug}>
+										<Link to={`topics/${topic.slug}`}>{topic.slug}</Link>
+									</li>
+								</TopicLink>
+							);
+						})}
+					</ul>
+				</ListStyle>
 			</nav>
 		);
 	}
