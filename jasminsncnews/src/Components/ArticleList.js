@@ -9,7 +9,7 @@ class ArticleList extends Component {
 	state = {
 		articles: [],
 		isLoading: true,
-		hasError: false,
+		hasError: null,
 	};
 
 	componentDidMount() {

@@ -46,11 +46,9 @@ class CommentList extends Component {
 	};
 
 	removeComment = (comment_id) => {
-		const updatedComments = this.state.comments.filter((comment) => {
-			if (comment.comment_id !== comment_id) {
-				return comment;
-			}
-		});
+		const updatedComments = this.state.comments.filter(
+			(comment) => comment.comment_id !== comment_id,
+		);
 		this.setState({ comments: updatedComments });
 	};
 
