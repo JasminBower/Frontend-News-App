@@ -21,7 +21,7 @@ const Rotate = styled.div`
 const Loading = (props) => {
 	return (
 		<Rotate>
-			<span role='img' aria-label='avocado'>
+			<span role='img' aria-label='spinning avocado'>
 				🥑
 			</span>
 		</Rotate>

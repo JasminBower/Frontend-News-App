@@ -6,13 +6,19 @@ const Title = styled.h1`
 	font-size: 6em;
 `;
 
-const Header = (props) => {
-	return (
-		<div>
-			<Title>JB News</Title>
-			<p>Welcome back {props.loggedInUser}</p>
-		</div>
-	);
-};
+class Header extends React.Component {
+	state = {
+		loggedInUser: "tickle122",
+	};
+
+	render() {
+		return (
+			<div>
+				<Title>JB News</Title>
+				<p>Welcome back {this.state.loggedInUser}</p>
+			</div>
+		);
+	}
+}
 
 export default Header;

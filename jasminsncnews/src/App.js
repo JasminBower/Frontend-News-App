@@ -8,17 +8,14 @@ import ArticleList from "./Components/ArticleList";
 import SingleArticle from "./Components/SingleArticle";
 import CommentList from "./Components/CommentList";
 import DisplayError from "./Components/DisplayError";
-import styled from "styled-components";
 
 class App extends React.Component {
-	state = {
-		loggedInUser: "tickle122",
-	};
+	state = {};
 
 	render() {
 		return (
 			<div className='App'>
-				<Header loggedInUser={this.state.loggedInUser} />
+				<Header />
 
 				<Navbar className='Navbar' />
 

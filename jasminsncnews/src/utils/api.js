@@ -43,18 +43,10 @@ export const deleteComment = (comment_id) => {
 	return request.delete(`/comments/${comment_id}`);
 };
 
-export const patchArticleVotes = (article_id, vote) => {
+export const patchVotes = (id, type, vote) => {
 	const newVote = { inc_votes: vote };
 
-	return request.patch(`/articles/${article_id}`, newVote).then(({ data }) => {
-		return data.article;
-	});
-};
-
-export const patchCommentVotes = (comment_id, vote) => {
-	const newVote = { inc_votes: vote };
-
-	return request.patch(`/comments/${comment_id}`, newVote).then(({ data }) => {
-		return data.comment;
+	return request.patch(`/${type}/${id}`, newVote).then(({ data }) => {
+		return data;
 	});
 };

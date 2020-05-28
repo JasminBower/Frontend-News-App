@@ -4,8 +4,8 @@ class SortArticles extends Component {
 	render() {
 		return (
 			<select id='sort_by' name='sort_by' onChange={this.handleSort}>
-				<option value='created_at'>most recent</option>
-				<option value='oldest'>oldest</option>
+				{/* <option value='blank'>sort by</option> */}
+				<option value='created_at'>oldest</option>
 				<option value='comment_count'>comment_count</option>
 				<option value='votes'>votes</option>
 			</select>
@@ -14,9 +14,9 @@ class SortArticles extends Component {
 
 	handleSort = (event) => {
 		const { value } = event.target;
-		const order = value === "oldest" ? "asc" : "desc";
+		const order = value === "created_at" ? "asc" : "desc";
 
-		this.props.sortArticlesBy(value, order);
+		this.props.fetchArticles(value, order);
 	};
 }
 

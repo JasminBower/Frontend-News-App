@@ -22,28 +22,11 @@ class ArticleList extends Component {
 		}
 	}
 
-	fetchArticles = () => {
-		api
-			.getArticles(this.props.topic)
-			.then((articles) => {
-				this.setState({ articles, isLoading: false });
-			})
-			.catch((err) => {
-				const { status, data } = err.response;
-				this.setState({
-					hasError: {
-						status: status,
-						msg: data.msg,
-					},
-				});
-			});
-	};
-
-	sortArticlesBy = (sort_by, order) => {
+	fetchArticles = (sort_by, order) => {
 		api
 			.getArticles(this.props.topic, sort_by, order)
 			.then((articles) => {
-				this.setState({ articles });
+				this.setState({ articles, isLoading: false });
 			})
 			.catch((err) => {
 				const { status, data } = err.response;
@@ -64,7 +47,7 @@ class ArticleList extends Component {
 
 		return (
 			<main>
-				Sort articles by: <SortArticles sortArticlesBy={this.sortArticlesBy} />
+				Sort articles by: <SortArticles fetchArticles={this.fetchArticles} />
 				{articles.map((article) => {
 					return <Articles key={article.article_id} {...article} />;
 				})}

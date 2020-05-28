@@ -39,25 +39,11 @@ class SingleArticle extends Component {
 			});
 	};
 
-	patchVotes = (article_id, vote) => {
-		api
-			.patchArticleVotes(article_id, vote)
-			.then((article) => {
-				this.setState({ article });
-			})
-			.catch((err) => {
-				const { status, data } = err.response;
-				this.setState({
-					articleError: {
-						status: status,
-						msg: data.msg,
-					},
-				});
-			});
+	patchVotes = (articleResponse) => {
+		this.setState({ article: articleResponse.article });
 	};
 
 	render() {
-		//console.log(this.state, 'this')
 		const { article, isLoading, articleError } = this.state;
 		if (articleError)
 			return (
@@ -69,7 +55,11 @@ class SingleArticle extends Component {
 			<main>
 				<h1>{article.title}</h1>
 				<p>votes: {article.votes}</p>
-				<Votes id={article.article_id} patchVotes={this.patchVotes} />
+				<Votes
+					id={article.article_id}
+					patchVotes={this.patchVotes}
+					type={"articles"}
+				/>
 				<p>{article.body}</p>
 				<p>
 					<Link to={`/articles/${article.article_id}/comments`}>

@@ -21,12 +21,6 @@ class CommentList extends Component {
 		this.fetchComments();
 	}
 
-	componentDidUpdate(prevProps, prevState) {
-		if (prevProps.topic !== this.props.topic) {
-			this.fetchComments();
-		}
-	}
-
 	fetchComments = () => {
 		api
 			.getComments(this.props.article_id)
@@ -57,28 +51,16 @@ class CommentList extends Component {
 		this.setState({ comments: updatedComments });
 	};
 
-	patchVotes = (comment_id, vote) => {
-		api
-			.patchCommentVotes(comment_id, vote)
-			.then((comment) => {
-				const updatedComments = this.state.comments.map((item) => {
-					if (item.comment_id !== comment_id) {
-						return item;
-					}
-					return comment;
-				});
+	patchVotes = (commentResponse) => {
+		const { comment_id } = commentResponse.comment;
+		const updatedComments = this.state.comments.map((comment) => {
+			if (comment.comment_id !== comment_id) {
+				return comment;
+			}
+			return commentResponse.comment;
+		});
 
-				this.setState({ comments: updatedComments });
-			})
-			.catch((err) => {
-				const { status, data } = err.response;
-				this.setState({
-					hasError: {
-						status: status,
-						msg: data.msg,
-					},
-				});
-			});
+		this.setState({ comments: updatedComments });
 	};
 
 	render() {
@@ -107,7 +89,11 @@ class CommentList extends Component {
 								)}
 								<p>votes: {comment.votes}</p>
 								{comment.author !== this.props.loggedInUser && (
-									<Votes id={comment.comment_id} patchVotes={this.patchVotes} />
+									<Votes
+										id={comment.comment_id}
+										patchVotes={this.patchVotes}
+										type={"comments"}
+									/>
 								)}
 							</CommentItem>
 						);

@@ -13,7 +13,8 @@ class CommentForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<label>
 					Comment:
-					<input
+					<textarea
+						required
 						name='newComment'
 						type='text'
 						value={body}
