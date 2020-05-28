@@ -10,7 +10,9 @@ import CommentList from "./Components/CommentList";
 import DisplayError from "./Components/DisplayError";
 
 class App extends React.Component {
-	state = {};
+	state = {
+		loggedInUser: "tickle122",
+	};
 
 	render() {
 		return (
