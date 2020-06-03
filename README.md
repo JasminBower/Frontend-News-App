@@ -1,6 +1,6 @@
 # NC News Frontend
 
-Welcome to NC News frontend, a reddit style news aggregator. The frontend was built with React, Axios, styled-components and Jest for testing.
+Welcome to NC News frontend, a reddit style news aggregator for Millennials who love Millennial pink and avocados! The frontend was built with React, Axios, styled-components and Jest for testing.
 
 A link to the backend repo can be found [here](https://github.com/JasminBower/Backend-News-App).
 
